@@ -1,5 +1,5 @@
 const nodemailer=require("nodemailer");
-const {MAILTRAP_PASSWORD,MAILTRAP_USERNAME}=require("../configs/config");
+const {MAILTRAP_PASSWORD,MAILTRAP_USERNAME}=process.env;
 module.exports=async function(options){
     // transport
     var transport = nodemailer.createTransport({
