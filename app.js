@@ -1,12 +1,16 @@
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 const planRouter = require("./routers/planRouter");
 const userRouter = require("./routers/userRouter");
 const viewRouter = require("./routers/viewRouter");
 const bookingRouter = require("./routers/bookingRouter");
 app.use(express.static("public"));
 //pug => render
+
+app.use(bodyParser.raw({type:'application/json'}));
+app.post('/webhook-checkout',createbooking);
 //form se input lete h to ye likhna mandatory h
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "pug");
