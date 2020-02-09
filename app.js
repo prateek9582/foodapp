@@ -6,6 +6,7 @@ const planRouter = require("./routers/planRouter");
 const userRouter = require("./routers/userRouter");
 const viewRouter = require("./routers/viewRouter");
 const bookingRouter = require("./routers/bookingRouter");
+const {createbooking} = require("./controllers/bookingController");
 app.use(express.static("public"));
 //pug => render
 
