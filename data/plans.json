@@ -1,0 +1,26 @@
+[
+    {
+        "id":1,
+        "name":"Premium",
+        "ratings":7,
+        "delivery":true,
+        "meals":3,
+        "description":"adaflkksdflksn"
+    },
+    {
+        "id":2,
+        "name":"Organic",
+        "ratings":5,
+        "delivery":true,
+        "meals":1,
+        "description":"adaflkksdflksn"
+    },
+    {
+        "id":3,
+        "name":"Nutritious",
+        "ratings":9,
+        "delivery":true,
+        "meals":2,
+        "description":"adaflkksdflksn"
+    }
+]

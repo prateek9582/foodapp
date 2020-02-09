@@ -1,0 +1,30 @@
+extend base
+block content
+    h2 SignUp
+    .container__parent
+        video.bg-video__content(autoplay='', muted='', loop='')
+            source(src='Avocado.mp4', type='video/mp4')
+            |         Your browser is not supported
+        form.signup
+            .entry
+                .entry-text
+                    | Name
+                input(type='text', name='Name', placeholder='Your Name', required='')
+            .entry
+                .entry-text
+                    | Email
+                input(type='email', name='email', placeholder='Your Email')
+            .entry
+                .entry-text
+                    | Password
+                input(type='password', name='Password', placeholder='Your Password')
+            .entry
+                .entry-text
+                    | Confirm Password
+                input(type='password', name='confirm', placeholder='Your Password')
+            .entry
+                .entry-text
+                    | Phone no.
+                input(type='number', name='phone no.', placeholder='Your phone no.')
+            .btn-parent
+                    button.btn.btn-full.form-button(type='submit') Signup

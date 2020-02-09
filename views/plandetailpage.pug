@@ -1,0 +1,20 @@
+extend base
+block content
+    h2 Plan Details
+    .PlansDetail
+        include detailPlan
+        form.updatePlanImage(method="POST" action = `/api/plans/${plan["_id"]}` enctype="multipart/form-data")
+            .entry
+                .entry-text Photo
+                input(type='file',name='cover')
+            .entry
+                .entry-text Photo
+                input(type='file',name='pictures')
+            .entry
+                .entry-text Photo
+                input(type='file',name='pictures')
+            .entry
+                .entry-text Photo
+                input(type='file',name='pictures')
+            .btn-parent
+                    button.btn.btn-full.form-button(type='submit' Planid=`${plan["_id"]}`).updatebtn Upload Image
