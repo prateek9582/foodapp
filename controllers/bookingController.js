@@ -83,7 +83,7 @@ module.exports.createNewBooking = async function (userEmail, planName) {
     }
 }
 
-module.exports.createbooking = async function (req, res) {
+module.exports.createbooking = async function (request, response) {
     const sig = request.headers["stripe-signature"];
     let event;
     const endpointSecret = process.env.END_POINT_SECRET;
