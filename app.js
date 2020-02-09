@@ -9,9 +9,7 @@ const bookingRouter = require("./routers/bookingRouter");
 const {createbooking} = require("./controllers/bookingController");
 app.use(express.static("public"));
 //pug => render
-
-app.use(bodyParser.raw({type:'application/json'}));
-app.post('/webhook-checkout',createbooking);
+app.post('/webhook-checkout',bodyParser.raw({type:'application/json'}),createbooking);
 //form se input lete h to ye likhna mandatory h
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "pug");
