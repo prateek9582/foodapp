@@ -90,7 +90,7 @@ module.exports.createbooking = async function (request, response) {
     try {
         event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
 
-        if (event.type == "payment-intend-succeeded") {
+        if (event) {
             const userEmail = event.data.object.customer_email;
             const planName = event.data.object.line_items[0].name;
             await createNewBooking(userEmail, planName);
