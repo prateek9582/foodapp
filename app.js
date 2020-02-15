@@ -9,6 +9,12 @@ const bookingRouter = require("./routers/bookingRouter");
 const {createbooking} = require("./controllers/bookingController");
 app.use(express.static("public"));
 //pug => render
+app.use(function(req,res,next){
+    if(req.method=="POST"){
+        console.log(req.url);
+    }
+    next();
+})
 app.post('/webhook-checkout',bodyParser.raw({type:'application/json'}),createbooking);
 //form se input lete h to ye likhna mandatory h
 app.use(express.urlencoded({ extended: true }));

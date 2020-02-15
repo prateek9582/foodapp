@@ -41,6 +41,7 @@ module.exports.createCheckoutSession = async function (req, res) {
 
 module.exports.createNewBooking = async function (userEmail, planid) {
     try {
+        console.log("Inside create Bookings");
         const user = await userModel.findOne({ email: userEmail });
         const plan = await planModel.findById(planid);
         const userId = user.id;
