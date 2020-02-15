@@ -16,7 +16,7 @@ module.exports.createCheckoutSession = async function (req, res) {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             customer_email: user.email,
-            client_reference_id: plan["_id"],
+            client_reference_id: id,
             line_items: [{
                 name: plan.name,
                 description: plan.description,
@@ -39,10 +39,10 @@ module.exports.createCheckoutSession = async function (req, res) {
     }
 }
 
-module.exports.createNewBooking = async function (userEmail, planId) {
+module.exports.createNewBooking = async function (userEmail, planid) {
     try {
         const user = await userModel.findOne({ email: userEmail });
-        const plan = await planModel.findById(planId);
+        const plan = await planModel.findById(planid);
         const userId = user["_id"];
         const planId = plan["_id"];
 
@@ -98,8 +98,8 @@ module.exports.createbooking = async function (request, response) {
 
     if (event.type == "checkout.session.completed") {
         const userEmail = event.data.object.customer_email;
-        const planId = event.data.object.client_reference_id;
-        await createNewBooking(userEmail, planId);
+        const planid = event.data.object.client_reference_id;
+        await createNewBooking(userEmail, planid);
         response.json({ received: true });
     }
 
