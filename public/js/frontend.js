@@ -78,7 +78,7 @@ if(bookPlan){
     bookPlan.addEventListener("click",async function(event){
         event.preventDefault();
         const planId = bookPlan.getAttribute("planId");
-        const userId = bookPlan.getAttribute("userId");
+        // const userId = bookPlan.getAttribute("userId");
         const response = await axios.get("/api/booking/"+planId);
         const session = response.data.session;
 

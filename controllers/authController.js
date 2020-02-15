@@ -10,12 +10,12 @@ module.exports.signup = async function (req, res) {
         //payload
         const id = user["_id"];
         //2.create Token
-        const token = await jwt.sign({id}, KEY);
+        const token = await jwt.sign({ id }, KEY);
         //3. Send the token
         res.cookie("jwt", token, { httpOnly: true });
         res.json({
             user, token,
-            succ : "user signed in"
+            succ: "user signed in"
         })
     }
     catch (err) {
@@ -34,10 +34,10 @@ module.exports.login = async function (req, res) {
         const dbpassword = user.password;
         if (dbpassword == password) {
             const id = user["_id"];
-            const token = await jwt.sign({id}, KEY);
+            const token = await jwt.sign({ id }, KEY);
             res.cookie("jwt", token, { httpOnly: true });
             return res.json({
-                succ:"user logged in"
+                succ: "user logged in"
             })
         }
         else {
@@ -53,10 +53,10 @@ module.exports.login = async function (req, res) {
     }
 }
 
-module.exports.logout = function(req,res){
-    res.cookie("jwt","dlafjhkjsn",{
-        httpOnly:true,
-        expires:new Date(Date.now())
+module.exports.logout = function (req, res) {
+    res.cookie("jwt", "dlafjhkjsn", {
+        httpOnly: true,
+        expires: new Date(Date.now())
     });
     res.redirect("/");
 }
@@ -64,9 +64,9 @@ module.exports.logout = function(req,res){
 module.exports.isuserverified = async function (req, res, next) {
     try {
         //1.Get the token
-        if((req.headers && req.headers.authorization) || (req.cookies&&req.cookies.jwt)){
+        if ((req.headers && req.headers.authorization) || (req.cookies && req.cookies.jwt)) {
             const header = (req.headers);
-            const token =req.cookies.jwt ||  header.authorization.split(" ")[1];
+            const token = req.cookies.jwt || header.authorization.split(" ")[1];
             //2. Verify the token
             const response = await jwt.verify(token, KEY);
             // console.log(res);
@@ -74,19 +74,18 @@ module.exports.isuserverified = async function (req, res, next) {
             // isAuthorized => user
             // req.user=user;
             //3. If verified call next
-            if (response)
-            {
+            if (response) {
                 const user = await userModel.findById(response.id);
                 req.user = user;
                 next();
             }
-            else{
+            else {
                 next();
             }
         }
-     else{
-         next();
-     }
+        else {
+            next();
+        }
     } catch (err) {
         console.log(err);
         res.json({
@@ -98,7 +97,7 @@ module.exports.isuserverified = async function (req, res, next) {
 module.exports.protectroute = async function (req, res, next) {
     try {
         //1.Get the token
-        if((req.headers && req.headers.authorization)){
+        if ((req.headers && req.headers.authorization)) {
             const header = (req.headers);
             const token = header.authorization.split(" ")[1];
             //2. Verify the token
@@ -108,19 +107,18 @@ module.exports.protectroute = async function (req, res, next) {
             // isAuthorized => user
             // req.user=user;
             //3. If verified call next
-            if (response)
-            {
+            if (response) {
                 const user = await userModel.findById(response.id);
                 req.user = user;
                 next();
             }
-            else{
+            else {
                 next();
             }
         }
-     else{
-         next();
-     }
+        else {
+            next();
+        }
     } catch (err) {
         console.log(err);
         res.json({
