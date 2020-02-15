@@ -43,8 +43,8 @@ module.exports.createNewBooking = async function (userEmail, planid) {
     try {
         const user = await userModel.findOne({ email: userEmail });
         const plan = await planModel.findById(planid);
-        const userId = user["_id"];
-        const planId = plan["_id"];
+        const userId = user.id;
+        const planId = plan.id;
 
         if (user.userBookedPlanId == undefined) {
             const order = {
