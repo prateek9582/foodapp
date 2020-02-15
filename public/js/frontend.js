@@ -81,6 +81,7 @@ if(bookPlan){
         // const userId = bookPlan.getAttribute("userId");
         const response = await axios.get("/api/booking/"+planId);
         const session = response.data.session;
+        console.log(session);
 
         stripe.redirectToCheckout({
             // Make the id field from the Checkout Session creation API response

@@ -16,7 +16,7 @@ module.exports.createCheckoutSession = async function (req, res) {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             customer_email: user.email,
-            client_reference_id: id,
+            client_reference_id: plan.id,
             line_items: [{
                 name: plan.name,
                 description: plan.description,
