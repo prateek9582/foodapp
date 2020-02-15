@@ -56,7 +56,7 @@ module.exports.createNewBooking = async function (userEmail, planid) {
                 }
             }
             const neworder = await bookingModel.create(order);
-            user.userBookedPlanId = neworder["_id"];
+            user.userBookedPlanId = neworder.id;
             await user.save({ validateBeforeSave: false });
             return res.json({
                 neworder,
